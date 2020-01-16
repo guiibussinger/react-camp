@@ -27,13 +27,15 @@ import styled, { keyframes } from "styled-components";
 const App = () => {
   const [clicks, setClicks] = useState(0);
 
+  const onClickButton = () => {
+    setClicks(clicks + 1);
+  };
+
   return (
     <StyledContainer>
       <StyledImage src={logo} />
       <StyledLabel>Você clicou no botão {clicks} vezes</StyledLabel>
-      <StyledButton onClick={() => setClicks(clicks + 1)}>
-        Clique aqui
-      </StyledButton>
+      <StyledButton onClick={onClickButton}>Clique aqui</StyledButton>
     </StyledContainer>
   );
 };
