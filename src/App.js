@@ -3,42 +3,43 @@ import logo from "./logo.svg";
 import "./App.css";
 import styled, { keyframes } from "styled-components";
 
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
-const App = () => {
-  const [clicks, setClicks] = useState(0);
-
-  const onClickButton = () => {
-    setClicks(clicks + 1);
+class App extends React.Component {
+  state = {
+    clicks: 0
   };
 
-  return (
-    <StyledContainer>
-      <StyledImage src={logo} />
-      <StyledLabel>Você clicou no botão {clicks} vezes</StyledLabel>
-      <StyledButton onClick={onClickButton}>Clique aqui</StyledButton>
-    </StyledContainer>
-  );
-};
+  onClickButton = () => {
+    this.setState(prevState => ({
+      clicks: prevState.clicks + 1
+    }));
+  };
+
+  render() {
+    return (
+      <div>
+        <img src={logo} />
+        <p>Você clicou no botão {this.state.clicks} vezes</p>
+        <button onClick={this.onClickButton}>Clique aqui</button>
+      </div>
+    );
+  }
+}
+
+// const App = () => {
+//   const [clicks, setClicks] = useState(0);
+
+//   const onClickButton = () => {
+//     setClicks(clicks + 1);
+//   };
+
+//   return (
+//     <StyledContainer>
+//       <StyledImage src={logo} />
+//       <StyledLabel>Você clicou no botão {clicks} vezes</StyledLabel>
+//       <StyledButton onClick={onClickButton}>Clique aqui</StyledButton>
+//     </StyledContainer>
+//   );
+// };
 
 const StyledContainer = styled.div`
   display: flex;
