@@ -1,30 +1,61 @@
-import React from "react";
-import pokeLogo from "../assets/poke_logo.png";
-import styled from "styled-components";
+import React, { useState } from "react";
+import logo from "../logo.svg";
+import styled, { keyframes } from "styled-components";
 
-import Table from "./Table";
+const MainScreen = () => {
+  const [clicks, setClicks] = useState(0);
 
-const MainScreen = () => (
-  <StyledContainer>
-    <StyledLogo src={pokeLogo} />
-    <Table />
-  </StyledContainer>
-);
+  const onClickButton = () => {
+    setClicks(clicks + 1);
+  };
+
+  return (
+    <StyledContainer>
+      <StyledImage src={logo} />
+      <StyledLabel>Você clicou no botão {clicks} vezes</StyledLabel>
+      <StyledButton onClick={onClickButton}>Clique aqui</StyledButton>
+    </StyledContainer>
+  );
+};
 
 const StyledContainer = styled.div`
-  width: 100vw;
   display: flex;
+  height: 100vh;
+  width: 100vw;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 40px;
-  background-color: #0d121b;
+  justify-content: center;
+  background-color: #282c34;
 `;
 
-const StyledLogo = styled.img`
-  height: 120px;
-  width: auto;
-  margin-top: 15px;
-  resize-mode: contain;
+const StyledLabel = styled.p`
+  color: white;
+  font-size: 20;
+`;
+
+const StyledButton = styled.button`
+  width: 300px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: white;
+  :focus {
+    outline: 0;
+  }
+`;
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const StyledImage = styled.img`
+  height: 40vmin;
+  width: 40vmin;
+  animation: ${rotate} 20s linear infinite;
 `;
 
 export default MainScreen;
